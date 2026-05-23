@@ -1,56 +1,31 @@
-# Landing — kain-mark.github.io
+# kain-mark.github.io
 
-Página web de marca para Kain-Mark, con foco actual en Inventario Minimalista.
-Single page, HTML+CSS puro, sin JS ni dependencias.
+Sitio web personal de **Kain-Mark**, desarrollador independiente de apps minimalistas para Android.
 
-## Estructura
+Publicado en: <https://kain-mark.github.io/>
+
+## Qué hay aquí
+
+Una sola página HTML+CSS, sin JS ni dependencias externas. La sirve GitHub Pages directamente desde `main`.
 
 ```
-landing/
+.
 ├── index.html
-├── README.md (este archivo)
 └── assets/
     ├── icon.png              ← icono 512×512 (también favicon)
     ├── feature_graphic.png   ← preview Open Graph / WhatsApp
     └── screenshots/
-        ├── 01_onboarding.png
-        ├── 02_home_full.png
-        ├── 03_home_filtered.png
-        ├── 04_nuevo_objeto.png
-        └── 05_estadisticas.png
+        └── 01–05_*.png       ← capturas de la app
 ```
 
-## Cómo subirlo a `kain-mark.github.io`
+## App destacada
 
-GitHub Pages publica automáticamente cualquier repo que se llame
-`<usuario>.github.io` en la URL `https://<usuario>.github.io/`.
-No requiere configuración manual de Pages — el simple hecho de que el repo
-exista y tenga contenido en `main` ya lo sirve.
+**Inventario Minimalista** — app Android para inventariar tu casa y decidir qué soltar.
+Diseño minimalista, datos sólo en el dispositivo, sin cuentas ni nube.
 
-### Pasos
+## Mantenimiento
 
-1. **Crear el repo en GitHub.**
-   - Nombre exacto: `kain-mark.github.io`
-   - Público (obligatorio para Pages gratis).
-   - Sin README, sin .gitignore, sin licencia (vacío del todo, lo subiremos nosotros).
-
-2. **Inicializar localmente desde esta carpeta.**
-
-   Desde la carpeta `landing/`:
-   ```bash
-   git init
-   git add .
-   git commit -m "Landing inicial Kain-Mark + Inventario Minimalista"
-   git branch -M main
-   git remote add origin https://github.com/Kain-Mark/kain-mark.github.io.git
-   git push -u origin main
-   ```
-
-3. **Esperar 1–2 minutos.**
-   GitHub Pages tarda un poco la primera vez en construir el sitio.
-   Pasado ese rato, la URL `https://kain-mark.github.io/` ya muestra la landing.
-
-### Cuando Play Store esté activo
+### Cuando Inventario Minimalista esté publicado en Play Store
 
 Editar `index.html` y cambiar:
 ```html
@@ -61,30 +36,23 @@ por:
 <a href="https://play.google.com/store/apps/details?id=com.davidmn.inventariominimalista" class="cta">Descargar en Google Play</a>
 ```
 
-Después:
-```bash
-git add index.html
-git commit -m "Activar enlace a Google Play"
-git push
-```
+Push a `main`, en ~1 minuto está visible.
 
-Cambio visible en producción en ~1 minuto.
+### Añadir una segunda app
+
+Duplicar los bloques "Qué hace la app" + "Cómo se ve" para la nueva app.
+El footer ya habla en plural ("Apps minimalistas") así que no requiere cambios.
 
 ## Diseño
 
-Paleta tomada directa de `app/src/main/java/com/davidmn/inventariominimalista/ui/theme/Color.kt`:
+Paleta tomada directa del tema de Inventario Minimalista para que la web y
+la app se sientan como la misma cosa:
 
 - Fondo: `#FBF8F3` (crema papel)
-- Texto principal: `#3B3A36` (tinta suave, no negro puro)
-- Acento botones: `#A7C4A0` (salvia)
-- Niveles de prescindibilidad: salvia / miel / terracota
+- Texto: `#3B3A36` (tinta suave, no negro puro)
+- Acento: `#A7C4A0` (salvia)
+- Niveles: salvia / miel / terracota
 
-Esto asegura que la landing y la app se sienten como la misma cosa.
+---
 
-## Mantenimiento futuro
-
-- **Añadir otra app:** duplicar el bloque "Qué hace la app" + "Cómo se ve" para
-  la nueva app. El footer ya dice "Apps minimalistas" en plural, preparado.
-- **Cambiar contacto:** sólo tocar el footer.
-- **Política de privacidad:** vive en otro repo (`inventario-minimalista-privacy`),
-  esta landing sólo enlaza.
+© Kain-Mark
