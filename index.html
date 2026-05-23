@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Inventario Minimalista — Suelta lo que sobra</title>
+<meta name="description" content="App Android para inventariar tu casa y decidir qué conservar y qué soltar. Sin nube, sin cuentas, sin ruido. Por Kain-Mark.">
+
+<!-- Open Graph / WhatsApp / Twitter preview -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Inventario Minimalista">
+<meta property="og:description" content="Inventaria tu hogar y suelta lo que sobra. App Android minimalista.">
+<meta property="og:image" content="assets/feature_graphic.png">
+<meta property="og:url" content="https://kain-mark.github.io/">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" type="image/png" href="assets/icon.png">
+<link rel="apple-touch-icon" href="assets/icon.png">
+
+<style>
+/* ============================================================
+   Paleta — mismo lenguaje visual que la app
+   ============================================================ */
+:root{
+  --crema:        #FBF8F3;   /* fondo principal */
+  --blanco-roto:  #FFFDF9;   /* cards */
+  --arena:        #EFE8DC;   /* divisores */
+  --tinta:        #3B3A36;   /* texto principal */
+  --tinta-tenue:  #7A7770;   /* texto secundario */
+  --salvia:       #A7C4A0;   /* acento botones */
+  --salvia-oscura:#6B8A63;   /* hover */
+  --salvia-suave: #CFE0CE;
+  --miel:         #F3E5B8;
+  --terracota:    #E9C9BE;
+  --cielo:        #D8E4ED;
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: var(--crema);
+  color: var(--tinta);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a{color: var(--salvia-oscura); text-decoration: none}
+a:hover{text-decoration: underline}
+
+.wrap{max-width: 880px; margin: 0 auto; padding: 0 24px}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+header.hero{
+  padding: 64px 0 48px;
+  text-align: center;
+}
+.hero .icon{
+  width: 96px; height: 96px;
+  border-radius: 22px;
+  box-shadow: 0 4px 24px rgba(59,58,54,0.08);
+  margin-bottom: 24px;
+}
+.hero h1{
+  font-size: 2.4rem;
+  font-weight: 600;
+  margin: 0 0 8px;
+  letter-spacing: -0.02em;
+}
+.hero .lema{
+  font-size: 1.2rem;
+  color: var(--tinta-tenue);
+  margin: 0 0 32px;
+  font-style: italic;
+}
+.cta{
+  display: inline-block;
+  background: var(--salvia);
+  color: var(--tinta);
+  padding: 14px 28px;
+  border-radius: 999px;
+  font-weight: 500;
+  font-size: 1.05rem;
+  transition: background 0.15s;
+  border: none;
+  cursor: pointer;
+}
+.cta:hover{
+  background: var(--salvia-oscura);
+  color: var(--blanco-roto);
+  text-decoration: none;
+}
+.cta.disabled{
+  background: var(--arena);
+  color: var(--tinta-tenue);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.cta-nota{
+  display: block;
+  margin-top: 12px;
+  font-size: 0.9rem;
+  color: var(--tinta-tenue);
+}
+
+/* ============================================================
+   SECCIONES
+   ============================================================ */
+section{padding: 48px 0}
+section h2{
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0 0 24px;
+  letter-spacing: -0.01em;
+}
+
+/* Tres ejes */
+.ejes{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.eje{
+  background: var(--blanco-roto);
+  border: 1px solid var(--arena);
+  border-radius: 16px;
+  padding: 24px 20px;
+  text-align: center;
+}
+.eje .badge{
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+}
+.eje.imp  .badge{background: var(--salvia-suave); color: #4F6B4E}
+.eje.med  .badge{background: var(--miel);         color: #8A7030}
+.eje.sol  .badge{background: var(--terracota);    color: #8B4A3A}
+.eje p{margin: 8px 0 0; color: var(--tinta-tenue); font-size: 0.95rem}
+
+/* Features */
+.features{
+  background: var(--blanco-roto);
+  border: 1px solid var(--arena);
+  border-radius: 16px;
+  padding: 32px;
+}
+.features ul{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.features li{
+  padding: 12px 0;
+  border-bottom: 1px solid var(--arena);
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.features li:last-child{border-bottom: none}
+.features .marker{
+  color: var(--salvia-oscura);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+/* Screenshots */
+.shots{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+}
+.shots img{
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  border: 1px solid var(--arena);
+  display: block;
+}
+
+/* Privacy */
+.privacy{
+  background: var(--cielo);
+  border-radius: 16px;
+  padding: 24px 28px;
+}
+.privacy h2{margin-top: 0}
+.privacy p{margin: 0; color: var(--tinta)}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer{
+  border-top: 1px solid var(--arena);
+  padding: 40px 0 64px;
+  margin-top: 32px;
+  text-align: center;
+  color: var(--tinta-tenue);
+  font-size: 0.9rem;
+}
+footer .marca{
+  font-weight: 500;
+  color: var(--tinta);
+  margin-bottom: 8px;
+}
+footer .links{margin-top: 12px}
+footer .links a{margin: 0 8px}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 600px){
+  .hero{padding: 40px 0 32px}
+  .hero h1{font-size: 1.9rem}
+  .hero .lema{font-size: 1.05rem}
+  section{padding: 32px 0}
+  .ejes{grid-template-columns: 1fr}
+  .features{padding: 24px}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <img src="assets/icon.png" alt="Icono Inventario Minimalista" class="icon">
+    <h1>Inventario Minimalista</h1>
+    <p class="lema">Suelta lo que sobra.</p>
+    <a href="#" class="cta disabled" id="play-cta">Próximamente en Google Play</a>
+    <span class="cta-nota">App Android · Gratis · Sin cuentas</span>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>La idea en tres ejes</h2>
+    <p style="color: var(--tinta-tenue); margin: 0 0 24px;">
+      Cada objeto se clasifica por habitación, categoría y nivel de prescindibilidad.
+      El cruce te enseña dónde sobra lo que tienes.
+    </p>
+    <div class="ejes">
+      <div class="eje imp">
+        <span class="badge">Imprescindible</span>
+        <p>Lo que usas, lo que importa, lo que se queda.</p>
+      </div>
+      <div class="eje med">
+        <span class="badge">Prescindible a largo plazo</span>
+        <p>Lo que aún tiene sentido — pero que algún día soltarás.</p>
+      </div>
+      <div class="eje sol">
+        <span class="badge">Ya prescindible</span>
+        <p>Lo que sobra hoy. Por aquí empieza el camino.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Qué hace la app</h2>
+    <div class="features">
+      <ul>
+        <li><span class="marker">·</span><span>Añade cada objeto en segundos: nombre, habitación, categoría, cuántos tienes.</span></li>
+        <li><span class="marker">·</span><span>Decide su nivel de prescindibilidad y filtra para ver sólo lo que sobra.</span></li>
+        <li><span class="marker">·</span><span>Estadísticas claras: qué habitación está más cargada, qué categoría acumula más.</span></li>
+        <li><span class="marker">·</span><span>Crea habitaciones y categorías propias si las predefinidas no encajan con tu casa.</span></li>
+        <li><span class="marker">·</span><span>Diseño en crema, salvia, miel y terracota. Sin distracciones, sin gamificación.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Cómo se ve</h2>
+    <div class="shots">
+      <img src="assets/screenshots/01_onboarding.png" alt="Pantalla de bienvenida">
+      <img src="assets/screenshots/02_home_full.png"  alt="Inventario completo">
+      <img src="assets/screenshots/03_home_filtered.png" alt="Filtrado por nivel">
+      <img src="assets/screenshots/04_nuevo_objeto.png"  alt="Añadir objeto">
+      <img src="assets/screenshots/05_estadisticas.png"  alt="Pantalla de estadísticas">
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="privacy">
+      <h2>Tus datos, en tu móvil</h2>
+      <p>
+        Todo se guarda localmente en tu dispositivo. No requiere cuenta, no requiere registro,
+        no requiere internet. Nada se sube a la nube. La app no recoge datos personales.
+        <a href="https://kain-mark.github.io/inventario-minimalista-privacy/">Política de privacidad</a>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="marca">Kain-Mark</div>
+    <div>Desarrollador independiente · Apps minimalistas para Android</div>
+    <div class="links">
+      <a href="mailto:kainmark82@gmail.com">kainmark82@gmail.com</a>
+      ·
+      <a href="https://kain-mark.github.io/inventario-minimalista-privacy/">Privacidad</a>
+      ·
+      <a href="https://github.com/Kain-Mark">GitHub</a>
+    </div>
+    <div style="margin-top: 16px; font-size: 0.8rem;">© 2026 Kain-Mark</div>
+  </div>
+</footer>
+
+</body>
+</html>
